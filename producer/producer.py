@@ -1,5 +1,5 @@
 import pika, json, uuid
-from flask import Flask, jsonify, request
+from flask import Flask, jsonify, render_template, request
 import time
 import logging
 
@@ -36,6 +36,11 @@ def healthcheck():
     return jsonify({
         'message': 'Health check message sent'
     })
+
+@app.route('/create_item_get', methods=['GET'])
+def render_create_item_form():
+    # This route handles GET requests to render the HTML form
+    return render_template('create_item.html')
 
 # API for inventory item creation end-point
 @app.route('/create_item', methods=['POST'])
