@@ -1,15 +1,9 @@
-# Use the official Python image as base image
-FROM python:3.9-slim
+FROM python
 
-# Set working directory
 WORKDIR /app
 
-# Copy requirements.txt and install dependencies
-COPY requirements.txt .
-RUN pip install --no-cache-dir -r requirements.txt
+COPY ./consumer_two .
+COPY ./repository .
+RUN pip install -r requirements.txt
 
-# Copy the rest of the application
-COPY item_creation.py .
-
-# Command to run the application
-CMD ["python", "item_creation.py"]
+CMD [ "python", "item_creation.py" ]
